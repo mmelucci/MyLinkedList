@@ -13,7 +13,7 @@ public class MyLinkedList{
 
  private Node getNthNode(int n) {
    Node current = this.start;
-   if ((n<0)||(n >= this.size)) {
+   if ((n<0)||(n > this.size)) {
      throw new IndexOutOfBoundsException("Index out of bounds");
    }
    for (int i = 0; i < n; i ++) {
@@ -55,12 +55,12 @@ public class MyLinkedList{
     this.size ++;
   }
    // END:
-  // else if (index == this.size-1) {
-  //   this.end.setNext(newnode);
-  //   newnode.setPrev(this.end);
-  //   this.end = newnode;
-  //   this.size ++;
-  // }
+  else if (index == this.size) {
+    this.end.setNext(newnode);
+    newnode.setPrev(this.end);
+    this.end = newnode;
+    this.size ++;
+  }
   // MIDDLE:
   else {
     Node indexnode = getNthNode(index);
@@ -84,7 +84,7 @@ public class MyLinkedList{
 
  public String toString() {
    Node current = this.start;
-   String output = "";
+   String output = "[";
    while (current != null) {
      output += current.getData();
      current = current.getNext();
@@ -92,6 +92,21 @@ public class MyLinkedList{
        output += ", ";
      }
    }
+   output += "]";
+   return output;
+ }
+
+ public String toStringReversed() {
+   Node current = this.end;
+   String output = "[";
+   while (current != null) {
+     output += current.getData();
+     current = current.getPrev();
+     if (current != null) {
+       output += ", ";
+     }
+   }
+   output += "]";
    return output;
  }
 }
