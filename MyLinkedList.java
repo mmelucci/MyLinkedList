@@ -1,4 +1,4 @@
-import java.lang.IllegalArgumentException;
+import java.lang.IndexOutOfBoundsException;
 public class MyLinkedList{
  private int size;
  private Node start,end;
@@ -13,8 +13,8 @@ public class MyLinkedList{
 
  private Node getNthNode(int n) {
    Node current = this.start;
-   if (n >= this.size) {
-     throw new IllegalArgumentException("Index out of bounds");
+   if ((n<0)||(n >= this.size)) {
+     throw new IndexOutOfBoundsException("Index out of bounds");
    }
    for (int i = 0; i < n; i ++) {
      current = current.getNext();
@@ -71,8 +71,17 @@ public class MyLinkedList{
     this.size ++;
   }
  }
- // public String get(int index);
- // public String set(int index, String value);
+
+ public String get(int index){
+   return getNthNode(index).getData();
+ }
+
+ public String set(int index, String value){
+   Node oldnode = getNthNode(index);
+   getNthNode(index).setData(value);
+   return oldnode.getData();
+ }
+
  public String toString() {
    Node current = this.start;
    String output = "";
