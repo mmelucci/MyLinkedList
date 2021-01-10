@@ -109,4 +109,37 @@ public class MyLinkedList{
    output += "]";
    return output;
  }
+
+ public String remove(int index) {
+   Node oldnode = getNthNode(index);
+   // START:
+   if (index == 0) {
+     Node oldstart = this.start;
+     this.start = oldstart.getNext();
+     // this.start.setPrev() = null;
+     this.size --;
+   }
+   // END:
+   else if (index == this.size-1) {
+     Node oldend = this.end;
+     this.end = oldend.getPrev();
+     // this.end.setNext() = null;
+     this.size --;
+   }
+   // FINAL NODE:
+   else if (this.size == 1) {
+     this.start = null;
+     this.end = null;
+     this.size --;
+   }
+   // MIDDLE:
+   else {
+     Node prevnode = getNthNode(index-1);
+     Node nextnode = getNthNode(index+1);
+     prevnode.setNext(nextnode);
+     nextnode.setPrev(prevnode);
+     this.size --;
+   }
+   return oldnode.getData();
+ }
 }
