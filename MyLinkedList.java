@@ -116,14 +116,14 @@ public class MyLinkedList{
    if (index == 0) {
      Node oldstart = this.start;
      this.start = oldstart.getNext();
-     // this.start.setPrev() = null;
+     this.start.setPrev(null);
      this.size --;
    }
    // END:
    else if (index == this.size-1) {
      Node oldend = this.end;
      this.end = oldend.getPrev();
-     // this.end.setNext() = null;
+     this.end.setNext(null);
      this.size --;
    }
    // FINAL NODE:
