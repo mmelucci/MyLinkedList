@@ -142,4 +142,34 @@ public class MyLinkedList{
    }
    return oldnode.getData();
  }
+ /*
+*@postcondition: All of the elements from other are removed from the other, and connected to the end of this linked list.
+*@postcondition: The size of other is reduced to 0.
+*@postcondition: The size of this is now the combined sizes of both original lists
+*/
+  public void extend(MyLinkedList other){
+    if (other.size == 0) {
+      return;
+    }
+    else if (this.size == 0) {
+      this.start = other.start;
+      this.end = other.end;
+      this.size = other.size;
+      other.start = null;
+      other.end = null;
+      other.size = 0;
+    }
+    // else if (other.size = 1) {
+    //
+    // }
+    else {
+    this.end.setNext(other.start);
+    other.start.setPrev(this.end);
+    this.end = getNthNode(other.size-1);
+    this.size = this.size + other.size;
+    other.start = null;
+    other.end = null;
+    other.size = 0;
+  }
+  }
 }
