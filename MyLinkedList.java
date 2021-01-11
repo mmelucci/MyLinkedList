@@ -13,7 +13,7 @@ public class MyLinkedList{
 
  private Node getNthNode(int n) {
    Node current = this.start;
-   if ((n<0)||(n > this.size)) {
+   if ((n<0)||(n > this.size-1)) {
      throw new IndexOutOfBoundsException("Index out of bounds");
    }
    for (int i = 0; i < n; i ++) {
@@ -77,10 +77,14 @@ public class MyLinkedList{
  }
 
  public String set(int index, String value){
-   Node oldnode = getNthNode(index);
-   getNthNode(index).setData(value);
-   return oldnode.getData();
- }
+     if (index < 0 || index >= size()){
+       throw new IndexOutOfBoundsException("Index " + index + " is out of bounds");
+     }
+     Node oldnode = getNthNode(index);
+     String olddata = oldnode.getData();
+     oldnode.setData(value);
+     return olddata;
+   }
 
  public String toString() {
    Node current = this.start;
