@@ -165,8 +165,10 @@ public class MyLinkedList{
     else {
     this.end.setNext(other.start);
     other.start.setPrev(this.end);
-    this.end = getNthNode(other.size-1);
-    this.size = this.size + other.size;
+    this.end = other.end;
+    // System.out.println("Other.size =" + other.size());
+    // System.out.println("Newend after append" + this.end.getData());
+    this.size = this.size + other.size();
     other.start = null;
     other.end = null;
     other.size = 0;
