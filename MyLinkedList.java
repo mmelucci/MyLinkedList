@@ -116,8 +116,14 @@ public class MyLinkedList{
 
  public String remove(int index) {
    Node oldnode = getNthNode(index);
+   // FINAL NODE:
+   if (this.size == 1) {
+     this.start = null;
+     this.end = null;
+     this.size --;
+   }
    // START:
-   if (index == 0) {
+   else if (index == 0) {
      Node oldstart = this.start;
      this.start = oldstart.getNext();
      this.start.setPrev(null);
@@ -128,12 +134,6 @@ public class MyLinkedList{
      Node oldend = this.end;
      this.end = oldend.getPrev();
      this.end.setNext(null);
-     this.size --;
-   }
-   // FINAL NODE:
-   else if (this.size == 1) {
-     this.start = null;
-     this.end = null;
      this.size --;
    }
    // MIDDLE:
